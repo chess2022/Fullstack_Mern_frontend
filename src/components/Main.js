@@ -6,7 +6,7 @@ import Show from "../pages/Show"
 export default function Main(props) {
   const [people, setPeople] = useState(null)
 
-  const URL = "http://localhost:3001/people/"; //this is the backend url
+  const URL = "https://cw-fullstack-mern-backend.herokuapp.com/people/"; //this is the backend url
 
   const getPeople = async () => {
     const data = await fetch(URL).then(res => res.json())
