@@ -1,3 +1,11 @@
+import { Link } from "react-router-dom"
+
 export default function Header(props) {
-  return <h1>Header goes here</h1>;
+  return (
+  <nav className="nav">
+    <Link to="/">
+      <div>People App</div>
+    </Link>
+  </nav>
+  )
 }
