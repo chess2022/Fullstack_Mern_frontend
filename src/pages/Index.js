@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function Index({people, createPeople}) {
     //state to hold formData
-    const [newForm, setNewForm] = useState({
+    const [form, setForm] = useState({
         name: "",
         image: "", 
         title: "", 
@@ -11,8 +11,8 @@ export default function Index({people, createPeople}) {
 
     //handleChange function for form
     const handleChange = (event) => {
-        setNewForm((prevState) => ({
-            ...prevState,
+        setForm((form) => ({
+            ...form,
             [event.target.name]: event.target.value,
         }))
     }
@@ -20,8 +20,8 @@ export default function Index({people, createPeople}) {
     //handle submit function for form
     const handleSubmit = (event) => {
         event.preventDefault()
-        createPeople(newForm)
-        setNewForm({
+        createPeople(form)
+        setForm({
             name: "",
             image: "",
             title: "",
@@ -42,28 +42,28 @@ export default function Index({people, createPeople}) {
 
     const loading = () => <h1>Loading...</h1>
 
-    return people? loaded() : loading()
+    // return people? loaded() : loading()
 
     return (
       <section>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={newForm.name}
+            value={form.name}
             name="name"
             placeholder="name"
             onChange={handleChange}
           />
           <input
             type="text"
-            value={newForm.image}
+            value={form.image}
             name="image"
             placeholder="image URL"
             onChange={handleChange}
           />
            <input
             type="text"
-            value={newForm.title}
+            value={form.title}
             name="title"
             placeholder="title"
             onChange={handleChange}
