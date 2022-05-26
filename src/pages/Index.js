@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default function Index(props) {
+export default function Index({people, createPeople}) {
     //state to hold formData
     const [newForm, setNewForm] = useState({
         name: "",
@@ -20,7 +20,7 @@ export default function Index(props) {
     //handle submit function for form
     const handleSubmit = (event) => {
         event.preventDefault()
-        props.createPeople(newForm)
+        createPeople(newForm)
         setNewForm({
             name: "",
             image: "",
@@ -29,7 +29,7 @@ export default function Index(props) {
     }
 
     const loaded = () => {
-        return props.people.map((person) => (
+        return people.map((person) => (
             <div key={person._id} className="person">
                 <Link to={`/people/${person._id}`}>
                     <h1>{person.name}</h1>
@@ -40,9 +40,9 @@ export default function Index(props) {
         ))
     }
 
-    const loading = () => {
-        return <h1>Loading...</h1>
-    }
+    const loading = () => <h1>Loading...</h1>
+
+    return people? loaded() : loading()
 
     return (
       <section>
@@ -61,7 +61,7 @@ export default function Index(props) {
             placeholder="image URL"
             onChange={handleChange}
           />
-          <input
+           <input
             type="text"
             value={newForm.title}
             name="title"
@@ -70,7 +70,7 @@ export default function Index(props) {
           />
           <input type="submit" value="Create Person" />
         </form>
-        {props.people ? loaded() : loading()}
+        {people ? loaded() : loading()}
       </section>
     );
 }

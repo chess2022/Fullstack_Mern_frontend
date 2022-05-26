@@ -6,11 +6,10 @@ import Show from "../pages/Show"
 export default function Main(props) {
   const [people, setPeople] = useState(null)
 
-  const URL = "http://localhost:3001/people" //this is the backend url
+  const URL = "http://localhost:3001/people/"; //this is the backend url
 
   const getPeople = async () => {
-    const response = await fetch(URL)
-    const data = await response.json()
+    const data = await fetch(URL).then(res => res.json())
     setPeople(data)
   }
 
@@ -25,7 +24,7 @@ export default function Main(props) {
     getPeople()
   }
 
-  useEffect(() => getPeople(), [])
+  useEffect(() => {getPeople()}, [])
 
   return (
   <main>
